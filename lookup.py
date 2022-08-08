@@ -10,6 +10,7 @@ import requests
 from bs4 import BeautifulSoup as parser
 
 ses = requests.Session()
+
 class Domain:
 	def __init__(self, url):
 		os.system("clear")
@@ -23,9 +24,10 @@ class Domain:
 			a = ses.get(self.url, headers={"user-agent":"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36"}).text
 			b = parser(a, "html.parser")
 			for x in b.find_all("pre"):
-				domain_id = re.findall(r"\bD\w+\s\bI\w+.*", str(x))[0]
-				if "" in domain_id:
-					domain_id = "Tidak Terdeteksi"
+				try:
+					domain_id = re.findall(r"\bD\w+\s\bI\w+.*", str(x))[0]
+				except UnboundLocalError:
+					domain_id = ("Domain ID: Tidak Terdeteksi")
 				domain_name = re.findall(r"\bD\w+\s\bN\w+.*", str(x))[0]
 				created = re.findall(r"\bC\w+\s\w+.*", str(x))[0]
 				last_update = re.findall(r"\bL\w+\s\w+\s\w+.*\S", str(x))[0]
@@ -34,7 +36,6 @@ class Domain:
 				ns2 = re.findall(r"\bN\w+\s\w+.*", str(x))[2]
 		except UnboundLocalError:
 			exit("\n [!] IP Kamu Kena Spam Request")
-		# biar simpel ajah :v
 		lib = [
 			domain_id, 
 			domain_name, 
