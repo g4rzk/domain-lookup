@@ -19,8 +19,9 @@ lib = [
 - expired, 
 - ns1, 
 - ns2
+
 ]
 
 You can add up to 4 name servers if the blog domain is only 2 hosting domains.
 
-Author by: [Angga Kurniawan](github.com/g4rzk)
+Author by: [Angga Kurniawan](https://github.com/g4rzk)
